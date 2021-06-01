@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des produis</h4>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Ajouter Produit</h4>
+                    <form action="" method="POST" class="forms-sample mt-5" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="gamme">Gamme</label>
+                            <select class="form-control" name="gamme">
+                                <option value="">choisir la gamme</option>
+                                {% for row in gammes %}
+                                <option value="{{ row[0] }}">{{ row[2] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="produit">Produit</label>
+                            <input type="text" class="form-control" name="produit" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea rows="4" class="form-control" name="description" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="img" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="qte_stock">Qte_stock</label>
+                            <input type="text" class="form-control" name="qte_stock" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prix_unitaire">Prix_Unitaire</label>
+                            <input type="text" class="form-control" name="prix_unitaire" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="volume_bouteille">Volume_Bouteille</label>
+                            <input type="text" class="form-control" name="volume_bouteille" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success mr-2">Valider</button>
+                        <a href="/produit" class="btn btn-light">Annuler</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

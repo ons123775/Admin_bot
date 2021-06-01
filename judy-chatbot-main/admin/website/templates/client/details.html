@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des Clients</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% include "flash_message.html" %}
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Détails Client</h4>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Nom: </strong> {{ client[1] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Prenom: </strong> {{ client[2] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Date de naissance: </strong> {{ client[3] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>N° Téléphone: </strong> {{ client[4] }}
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-striped">
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <strong>Email: </strong> {{ client[5] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Adresse: </strong> {{ client[6] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Ville: </strong> {{ client[7] }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Pays: </strong> {{ client[8] }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-3"></div>
+                        <div class="col-2">
+                            <a href="/client" class="btn btn-block btn-dark">Cancel</a>
+                        </div>
+                        <div class="col-2">
+                            <a href="/client/modifier/{{ client[0] }}" class="btn btn-block btn-info">Modifier</a>
+                        </div>
+                        <div class="col-2">
+                            {% if client[9] == 1 %}
+                            <form action="{{ url_for('client_activer_desactiver', id=client[0], etat=0) }}"
+                                method="post" onsubmit="return confirm(' Desactiver Client ?');">
+                                <button type="submit" class="btn btn-block btn-danger">Desactiver</button>
+                            </form>
+                            {% else %}
+                            <form action="{{ url_for('client_activer_desactiver', id=client[0], etat=1) }}"
+                                method="post" onsubmit="return confirm(' Activer Client ?');">
+                                <button type="submit" class="btn btn-block btn-success">Activer</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des factures</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% include "flash_message.html" %}
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="card-title">Liste des factures</h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-right">
+                                <a href="/facture/ajouter" class="btn btn-primary ">Ajouter facture</a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th> N° Facture </th>
+                                <th> Num_Commande </th>
+                                <th> Nom_Client</th>
+                                <th> Prenom_Client</th>
+                                <th> Total</th>
+                                <th> Date_Reglement	</th>
+                                <th> moyen_paiement</th>
+                                <th class="text-center" colspan="2"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if factures %}
+                            {% for row in factures %}
+                            <tr>
+                                
+                                <td> {{ row[0] }} </td>
+                                <td> {{ row[1] }} </td>
+                                <td> {{ row[11] }} </td>
+                                <td> {{ row[12] }} </td>
+                                <td> {{ row[2] }} </td>
+                                <td> {{ row[3] }} </td>
+                                <td> {{ row[4] }} </td>
+                                <td class="text-right">
+                                    <a href="/facture/modifier/{{ row[0] }}" class="btn btn-info ">Modifier</a>
+                                </td>
+                                <td class="text-left">
+                                    <form action="{{ url_for('facture_supprimer', id=row[0]) }}" method="post"
+                                        onsubmit="return confirm(' Supprimer facture ?');">
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                               
+
+
+                              
+
+
+                            </tr>
+
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="8">
+                                    Aucune facture
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

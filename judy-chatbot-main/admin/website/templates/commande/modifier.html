@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des commandes</h4>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Modifier commande</h4>
+                    <form action="" method="POST" class="forms-sample mt-5" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="Nom_Client">Nom_Client</label>
+                            <select class="form-control" name="Nom_Client">
+                                <option value="">choisir le nom du client</option>
+                                {% for row in clients %}
+                                <option {% if row[0] == commande[1] %} selected {% endif %} value="{{ row[0] }}">
+                                    {{ row[1] }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="Prenom_Client">Prenom_Client</label>
+                            <select class="form-control" name="Prenom_Client">
+                                <option value="">choisir le prenom du client</option>
+                                {% for row in clients %}
+                                <option {% if row[0] == commande[1] %} selected {% endif %} value="{{ row[0] }}">
+                                    {{ row[2] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Date_Creation">Date_Creation</label>
+                            <input value="{{ commande[2] }}" type="text" class="form-control" name="Date_Creation" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="commande"> Total</label>
+                            <input value="{{ commande[3] }}" type="text" class="form-control" name="commande" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="commande"> État</label>
+                            <input value="{{ commande[4] }}" type="text" class="form-control" name="commande" required>
+                        </div>
+
+                    
+
+                        <button type="submit" class="btn btn-success mr-2">Sauvegarder</button>
+                        <a href="/commande" class="btn btn-light">Annuler</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

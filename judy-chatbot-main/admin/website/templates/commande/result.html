@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block search %}
+    {% include "commande/_search.html" %}
+{% endblock  %}
+
+
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des Commandess</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% include "flash_message.html" %}
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="card-title">Résultat: {{ keyword }}</h4>
+                        </div>
+                    </div>
+                        
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th> N° Commande </th>
+                                <th> Nom Client</th>
+                                <th> Prenom client </th>
+                                <th> Date_creation </th>
+                                <th> Total </th>
+                                <th> État</th>
+                                <th class="text-center"> Action </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if commandes %}
+                            {% for row in commandes %}
+                            <tr>
+                               
+                                <td> {{ row[0] }} </td>
+                                <td> {{ row[6] }} </td>
+                                <td> {{ row[7] }} </td>
+                                <td> {{ row[2] }} </td>
+                                <td> {{ row[3] }} </td>
+                                <td> {{ row[4] }} </td>
+                                <td class="text-right">
+                                    <a href="/commande/modifier/{{ row[0] }}" class="btn btn-info ">Modifier</a>
+                                </td>
+                                <td class="text-left">
+                                    <form action="{{ url_for('commande_supprimer', id=row[0]) }}" method="post"
+                                        onsubmit="return confirm(' Supprimer commande ?');">
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+ 
+                               
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="5">
+                                    Aucune commande
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

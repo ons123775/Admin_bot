@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block search %}
+    {% include "question/_search.html" %}
+{% endblock  %}
+
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des questions</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% include "flash_message.html" %}
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="card-title">Résultat: {{ keyword }}</h4>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            
+                                <th> N° question</th>
+                                <th> Nom Client</th>
+                                <th> Prenom Client</th>
+                                <th> Date_creation	</th>
+                                <th class="text-center" colspan="2"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if questions %}
+                            {% for row in questions %}
+                            <tr>
+                                
+                                <td> {{ row[0] }} </td>
+                                <td> {{ row[5] }} </td>
+                                <td> {{ row[6] }} </td>
+                                <td> {{ row[3] }} </td>
+                                <td class="text-center">
+                                    <a href="/question/details/{{ row[0] }}" class="btn btn-info "> Détails</a>
+                                </td>
+
+
+                              
+
+
+                            </tr>
+
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="5">
+                                    Aucune question
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des Categories</h4>
+            </div>
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Ajouter Catégorie</h4>
+                    <form action="" method="POST" class="forms-sample mt-5" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="nom">Nom Categorie</label>
+                            <input type="text" class="form-control" name="nom" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="img" class="form-control" required>
+                             
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Valider</button>
+                        <a href="/categorie" class="btn btn-light">Annuler</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

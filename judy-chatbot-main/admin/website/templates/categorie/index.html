@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block search %}
+    {% include "categorie/_search.html" %}
+{% endblock  %}
+
+{% block main %}
+<div class="content-wrapper">
+    <!-- Page Title Header Starts-->
+    <div class="row page-title-header">
+        <div class="col-12">
+            <div class="page-header">
+                <h4 class="page-title">Gestion des Categories</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% include "flash_message.html" %}
+        </div>
+    </div>
+    <!-- Page Title Header Ends-->
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="card-title">Liste des Catégories</h4>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-right">
+                                <a href="/categorie/ajouter" class="btn btn-primary ">Ajouter Categorie</a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th> Image </th>
+                                <th> Nom </th>
+                                <th> Description </th>
+                                <th> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if categories %}
+                            {% for row in categories %}
+                            <tr>
+                                <td>
+                                    <img style="width: 120px; height: 120px;" src="{{ row[2] }}"  />
+                                </td>
+                                <td> {{ row[1] }} </td>
+                                <td> {{ row[3] }} </td>
+
+                                <td>
+                                    <a href="/categorie/modifier/{{ row[0] }}" class="btn btn-info ">Modifier</a>
+
+                                    <form action="{{ url_for('categorie_supprimer', id=row[0]) }}" method="post"
+                                        onsubmit="return confirm(' Supprimer Catégorie ?');">
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="5">
+                                    Aucune catégorie
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
